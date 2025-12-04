@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCP Group - Checklist Nettoyage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA+ElEQVQ4jZ2TsUoDQRCGv7m9kFwO0UJ8Ah/AQrS0sBARbCzEQrCwFQuxtLGw9Ql8AxsLCxvBQhBBQdDKwkoQFPEm/3Z3LOLlEpOD3O3sN/+3M7vDwhhjAQ7wAa+E5AF0gHXAA5zU9wsoAC2gCawBOrU8AY+Ztj+Cp4AqoIBH4C7T7xTYLQ24AM6A28z4U+AU2M8JqAL7wEUmeAicAAe5AQrYBS4zwUNgCGwB5TyBM8FVYC0TfAvcgPcN9jMBXeA6EzyJ+l4A1oFCIKAPbAO1VPAz8AR4wCZQigN6wD5QiRteI8MLoA5ocTZ3YgAAAABJRU5ErkJggg==">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-section">
+                <div class="logo-placeholder">
+                    <img src="colored-logo.png" class="ocp-logo">
+                </div>
+                <div class="header-text">
+                    <h1 style="text-align: center;">OCP Group - DEF PLANT</h1>
+                    <p style="text-align: center;">Checklist des Travaux de Nettoyage</p>
+                </div>
+            </div>
+            <div class="date-display">
+                <div id="current-date"></div>
+            </div>
+        </header>
+        
+        <section class="info-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="storage-hall">Hall de stockage</label>
+                    <select id="storage-hall">
+                        <option value="HE06 JFC2">HE06 JFC2</option>
+                        <option value="HE06 JFC4">HE06 JFC4</option>
+                        <option value="HE03">HE03</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" value="">
+                </div>
+                <div class="form-group">
+                    <label for="responsible">Responsable des travaux</label>
+                    <input type="text" id="responsible" placeholder="Nom du responsable">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="staff-count">Effectif</label>
+                    <input type="number" id="staff-count" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label for="start-time">Heure début</label>
+                    <input type="time" id="start-time">
+                </div>
+                <div class="form-group">
+                    <label for="end-time">Heure fin</label>
+                    <input type="time" id="end-time">
+                </div>
+            </div>
+        </section>
+        
+        <section class="stats-section">
+            <div class="stat-card">
+                <h3>Taux de réalisation du planning</h3>
+                <div class="stat-value" id="planning-rate">0%</div>
+            </div>
+            <div class="stat-card">
+                <h3>Tâches réalisées</h3>
+                <div class="stat-value" id="tasks-done">0/0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Tâches planifiées</h3>
+                <div class="stat-value" id="tasks-planned">0</div>
+            </div>
+        </section>
+        
+        <div class="action-buttons">
+            <button class="btn btn-reset" id="reset-all">
+                <i class="fas fa-redo"></i> Tout réinitialiser
+            </button>
+            <button class="btn btn-primary" id="save-local">
+                <i class="fas fa-save"></i> Sauvegarder localement
+            </button>
+            <button class="btn btn-primary" id="load-local">
+                <i class="fas fa-folder-open"></i> Charger sauvegarde
+            </button>
+            <button class="btn btn-whatsapp" id="share-whatsapp">
+                <i class="fab fa-whatsapp"></i> Partager via WhatsApp
+            </button>
+        </div>
+        
+        <section class="table-section">
+            <h2>Checklist des travaux de nettoyage</h2>
+            <div class="table-container">
+                <table id="checklist-table">
+                    <thead>
+                        <tr>
+                            <th width="15%">Hall / Lieu</th>
+                            <th width="20%">Désignation</th>
+                            <th width="10%">Planifié (Oui/Non)</th>
+                            <th width="15%">Statut</th>
+                            <th width="15%">Photo avant</th>
+                            <th width="15%">Photo après</th>
+                            <th width="10%">Commentaire</th>
+                        </tr>
+                    </thead>
+                    <tbody id="checklist-body">
+                        <!-- Les données seront insérées ici par JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <div class="export-buttons">
+            <button class="btn btn-export" id="export-excel">
+                <i class="fas fa-file-excel"></i> Exporter Excel
+            </button>
+            <button class="btn btn-export" id="export-csv">
+                <i class="fas fa-file-csv"></i> Exporter CSV
+            </button>
+            <button class="btn btn-export" id="export-pdf">
+                <i class="fas fa-file-pdf"></i> Exporter PDF
+            </button>
+            <button class="btn btn-export" id="export-word">
+                <i class="fas fa-file-word"></i> Exporter Word
+            </button>
+        </div>
+        
+        <footer>
+            <p>OCP Group - Application de gestion des travaux de nettoyage</p>
+            <p>© <span id="current-year"></span> - Tous droits réservés</p>
+        </footer>
+    </div>
+
+    <!-- Input file caché pour les photos -->
+    <input type="file" id="photo-input" accept="image/*" style="display: none;">
+    
+    <script src="script.js"></script>
+</body>
+</html>
